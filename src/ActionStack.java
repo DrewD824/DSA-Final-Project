@@ -59,6 +59,20 @@ public class ActionStack {
     }
 
     /**
+     * Returns the most recent action without removing it, or null if no
+     * actions have been recorded. Useful for inspecting the user's most
+     * recent action (e.g. to check whether they are currently parked) without
+     * mutating the stack or having to handle a StackException.
+     * @return the top Action, or null if the stack is empty
+     */
+    public Action getTopAction() {
+        if (stack.isEmpty()) {
+            return null;
+        }
+        return stack.peek();
+    }
+
+    /**
      * Returns a message describing where the user most recently parked,
      * without removing anything from the stack. Returns a friendly message
      * if no PARK action exists on top of the stack (e.g. last action was a LEAVE).
